@@ -1,0 +1,22 @@
+.user__section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(#e66465, #9198e5)
+}
+.user__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.user__content{
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+.user__form{
+    display: flex;
+    flex-direction: column;
+}
