@@ -1,0 +1,10 @@
+.category__card{
+    display: flex;
+    align-items: center;justify-content: space-between;
+}
+.category__images{
+    max-width: 150px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}

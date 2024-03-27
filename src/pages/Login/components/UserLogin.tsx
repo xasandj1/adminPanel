@@ -1,37 +1,37 @@
 import React from 'react';
 import { Button, Checkbox, Form, type FormProps, Input } from 'antd';
 import { useMutationUser } from '../service/useMutationUser';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 type FieldType = {
-    useremail?: string;
+    phone_number?: string;
     password?: string;
     remember?: string;
 };
 
-
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
-
-
-
 export const UserLogin: React.FC = () => {
     const { mutate } = useMutationUser()
-    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    const navigate = useNavigate()
+    const onFinish: FormProps<FieldType>["onFinish"] = (values: any) => {
+
         mutate(values, {
             onSuccess: (res) => {
                 console.log(res);
-                Cookies.set('token', res?.token, { expires: 7 })
+                Cookies.set('token', res?.token, { expires: 7 });
+                navigate("/home")
             },
             onError: (err) => {
                 console.log(err)
             }
         })
-    }; 
+    };
+    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
     return (
         <section className="user__section" >
-            <div className="container user__container">
+            <div className="user__container">
                 <Form
 
                     className='user__content'
@@ -45,11 +45,11 @@ export const UserLogin: React.FC = () => {
                     autoComplete="off"
                 >
                     <Form.Item<FieldType>
-                        label="User Email"
-                        name="useremail"
+                        label="User Number"
+                        name="phone_number"
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
-                        <Input placeholder='useremail@gmail.com' />
+                        <Input placeholder='+99 ( ) ***-**-**' />
                     </Form.Item>
 
                     <Form.Item<FieldType>
