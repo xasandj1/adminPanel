@@ -5,14 +5,6 @@ import "../sass/categoryCards.scss"
 import { useDeleteCategory } from '../service/Mutation/useDeleteCategory';
 import { ClientQuery } from '../../../config/queryClient';
 
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
-
 export const CategoryCard: React.FC = () => {
     const { mutate, isPending } = useDeleteCategory()
     const { data: products } = useGetCategory()
