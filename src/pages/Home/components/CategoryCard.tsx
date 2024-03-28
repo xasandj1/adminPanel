@@ -4,9 +4,10 @@ import type { TableProps } from 'antd';
 import "../sass/categoryCards.scss"
 import { useDeleteCategory } from '../service/Mutation/useDeleteCategory';
 import { ClientQuery } from '../../../config/queryClient';
+import { Link } from 'react-router-dom';
 
 export const CategoryCard: React.FC = () => {
-    const { mutate, isPending } = useDeleteCategory()
+    const { mutate } = useDeleteCategory()
     const { data: products } = useGetCategory()
 
     const handleDelete = (id: number) => {
@@ -60,6 +61,13 @@ export const CategoryCard: React.FC = () => {
     ];
 
     return (
-        <Table columns={columns} dataSource={dataSource} />
+        <div>
+            <Link to={"/home/create"}>
+                <Button>Create</Button>
+            </Link>
+            <br />
+            <br />
+            <Table columns={columns} dataSource={dataSource} />
+        </div>
     )
 };

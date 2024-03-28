@@ -1,7 +1,9 @@
-import React from 'react'
+import { CategoryCard } from "../Home/components/CategoryCard"
 
 export const SubCategoryList = () => {
     return (
-        <div>SubCategoryList</div>
+        <div>
+            <CategoryCard  />
+        </div>
     )
 }
