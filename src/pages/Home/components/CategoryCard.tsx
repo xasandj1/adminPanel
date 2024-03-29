@@ -30,7 +30,7 @@ export const CategoryCard: React.FC = () => {
                         Delete
                     </Button>
                     <Link to={`edit-category/${product.id}`}>
-                        <Button  type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
+                        <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
                     </Link>
                 </div>
             ),
@@ -64,8 +64,8 @@ export const CategoryCard: React.FC = () => {
 
     return (
         <div>
-            <Link to={"/home/create"}>
-                <Button>Create</Button>
+            <Link to={"/home/create"} className='create__button'>
+                <Button type='primary'>Create</Button>
             </Link>
             <br />
             <br />

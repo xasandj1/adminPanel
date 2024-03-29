@@ -3,6 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import {
     Button,
     Form,
+    Image,
     Input,
     Upload,
     UploadFile,
@@ -36,6 +37,7 @@ export const EditCategory: React.FC = () => {
         setFileList(newFileList);
     const { id } = useParams()
     const { data: CategoryData } = useGetId(id);
+
     const { mutate } = useEditCategory(id);
     const onFinish = (values: CategoryData) => {
         console.log(values);
@@ -60,6 +62,7 @@ export const EditCategory: React.FC = () => {
             <Button onClick={() => navigate("/home")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
             {CategoryData && (
                 <Form
+                    initialValues={CategoryData}
                     onFinish={onFinish}
                     labelCol={{ span: 4 }}
                     wrapperCol={{ span: 14 }}
@@ -84,6 +87,7 @@ export const EditCategory: React.FC = () => {
                                 <div style={{ marginTop: 8 }}>Upload</div>
                             </button>
                         </Upload.Dragger>
+                        {!fileList.length && <Image src={CategoryData.image} alt="" />}
                     </Form.Item>
                     <Form.Item>
                         <Button htmlType="submit" type="primary">

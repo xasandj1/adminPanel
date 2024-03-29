@@ -6,7 +6,7 @@ import {
 import { Layout, Menu, Button, theme } from 'antd';
 import { layoutData } from '../data/layoutdata';
 import { Link, Outlet } from 'react-router-dom';
-// import "../layout.scss"
+import "../layout.scss"
 
 const { Header, Sider, Content } = Layout;
 
@@ -20,10 +20,10 @@ export const MainLayout: React.FC = () => {
         <Layout className='layout'>
             <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div className="demo-logo-vertical" />
-                <Menu theme='dark'>
+                <Menu theme='dark' className='layout__menu'>
                     {layoutData.map((items: any) => (
-                        <Menu.Item key={items.id}>
-                                <items.icon />
+                        <Menu.Item key={items.id} className='layout__list'>
+                                <items.icon className="icons"/>
                             <Link to={items.path}>
                                 {items.name}
                             </Link>
