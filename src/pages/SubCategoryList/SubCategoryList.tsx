@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getSubCategoryProduct } from "./service/Query/getSubCategory";
 import { mutSubCatgeroy } from "./service/Mutation/mutSubCatgeroy";
 import { ClientQuery } from "../../config/queryClient";
+import { nanoid } from "nanoid";
 
 export const SubCategoryList = () => {
     const { mutate } = mutSubCatgeroy()
@@ -19,7 +20,7 @@ export const SubCategoryList = () => {
     };
     const dataSource = data
         ? data.map((product: any) => ({
-            key: product.id.toString(),
+            key: nanoid(),
             name: product.title,
             id: product.id,
             img: product.image,
@@ -28,7 +29,7 @@ export const SubCategoryList = () => {
                     <Button type="primary" onClick={() => handleDelete(product.id)}>
                         Delete
                     </Button>
-                    <Link to={`edit-category/${product.id}`}>
+                    <Link to={`createSub/${product.id}`}>
                         <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
                     </Link>
                 </div>
@@ -63,9 +64,11 @@ export const SubCategoryList = () => {
 
     return (
         <div>
-            <Link to={"/home/create"} className='create__button'>
-                <Button type='primary'>Create</Button>
-            </Link>
+            <div className='create__button'>
+                <Link to={"/home/createSub"} >
+                    <Button type='primary'>Create</Button>
+                </Link>
+            </div>
             <br />
             <br />
             <Table columns={columns} dataSource={dataSource} />

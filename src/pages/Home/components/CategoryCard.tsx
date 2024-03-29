@@ -19,7 +19,7 @@ export const CategoryCard: React.FC = () => {
         });
     };
     const dataSource = products
-        ? products.map((product: any) => ({
+        ? products?.map((product: any) => ({
             key: product.id.toString(),
             name: product.title,
             id: product.id,
@@ -64,9 +64,11 @@ export const CategoryCard: React.FC = () => {
 
     return (
         <div>
-            <Link to={"/home/create"} className='create__button'>
-                <Button type='primary'>Create</Button>
-            </Link>
+            <div className='create__button'>
+                <Link to={"/home/create"} >
+                    <Button type='primary'>Create</Button>
+                </Link>
+            </div>
             <br />
             <br />
             <Table columns={columns} dataSource={dataSource} />
