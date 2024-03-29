@@ -29,7 +29,9 @@ export const CategoryCard: React.FC = () => {
                     <Button type="primary" onClick={() => handleDelete(product.id)}>
                         Delete
                     </Button>
-                    <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
+                    <Link to={`edit-category/${product.id}`}>
+                        <Button  type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
+                    </Link>
                 </div>
             ),
         }))

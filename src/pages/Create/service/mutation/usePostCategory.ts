@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { request } from "../../../../config/request";
-import { FormTypes } from "../../create-category";
+import { FormTypes } from "../../Create";
 export const usePostCategory = () => {
   return useMutation({
-    mutationFn: (data:FormData) =>
+    mutationFn: (data: FormData) =>
       request
         .post<FormTypes>("/category/", data, {
           headers: {

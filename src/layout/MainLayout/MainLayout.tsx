@@ -6,6 +6,7 @@ import {
 import { Layout, Menu, Button, theme } from 'antd';
 import { layoutData } from '../data/layoutdata';
 import { Link, Outlet } from 'react-router-dom';
+// import "../layout.scss"
 
 const { Header, Sider, Content } = Layout;
 
@@ -22,6 +23,7 @@ export const MainLayout: React.FC = () => {
                 <Menu theme='dark'>
                     {layoutData.map((items: any) => (
                         <Menu.Item key={items.id}>
+                                <items.icon />
                             <Link to={items.path}>
                                 {items.name}
                             </Link>

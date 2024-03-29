@@ -3,7 +3,7 @@ import { CategoryCard } from "../Home/components/CategoryCard"
 export const SubCategoryList = () => {
     return (
         <div>
-            <CategoryCard  />
+            <h1>xaaxxa</h1>
         </div>
     )
 }

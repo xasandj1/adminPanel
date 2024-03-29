@@ -12,3 +12,25 @@ body {
     background: white;
     font-family: "Roboto", sans-serif;
 }
+
+.anticon svg {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+}
+
+:where(.css-dev-only-do-not-override-42nv3w).ant-layout .ant-layout-sider-children {
+    height: 100vh;
+    margin-top: -0.1px;
+    padding-top: 0.1px;
+}
+
+:where(.css-dev-only-do-not-override-42nv3w).ant-layout .ant-layout-sider-children .ant-menu.ant-menu-inline-collapsed {
+    width: auto;
+    padding-top: 12px;
+}
+:where(.css-dev-only-do-not-override-42nv3w).ant-menu-vertical.ant-menu-root {
+    box-shadow: none;
+    padding-top: 12px;
+}

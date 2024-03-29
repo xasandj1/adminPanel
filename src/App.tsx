@@ -4,6 +4,7 @@ import { Home } from './pages/Home'
 import { MainLayout } from './layout/MainLayout/MainLayout'
 import { SubCategoryList } from './pages/SubCategoryList'
 import { CreateCategory } from './pages/Create'
+import { EditCategory } from './pages/Edit/Edit'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path='subcategory' element={<SubCategoryList />} />
           <Route path="create" element={<CreateCategory />} />
+          <Route path='edit-category/:id' element={<EditCategory />} />
         </Route>
       </Routes>
     </>
