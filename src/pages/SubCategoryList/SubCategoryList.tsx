@@ -29,7 +29,7 @@ export const SubCategoryList = () => {
                     <Button type="primary" onClick={() => handleDelete(product.id)}>
                         Delete
                     </Button>
-                    <Link to={`createSub/${product.id}`}>
+                    <Link to={`/home/edit-subcategory/${product.id}`}>
                         <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
                     </Link>
                 </div>

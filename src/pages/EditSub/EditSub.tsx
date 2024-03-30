@@ -1,18 +1,19 @@
-import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import {
     Button,
     Form,
+    Image,
     Input,
-    Select,
     Upload,
     UploadFile,
     UploadProps,
     message,
 } from "antd";
-import { useNavigate } from "react-router-dom";
-import { getUseSub } from "./service/Query/getUseSub";
-import { useMutateSub } from "./service/Mutation/getCreatSub";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getSubId } from "./service/query/getSub";
+import { mutateSubEdit } from "./service/mutation/mutateSubEdit";
+
 
 type CategoryData = {
     title: string;
@@ -29,27 +30,23 @@ export interface FormTypes {
         title: string;
     };
 }
-export const CreateSub: React.FC = () => {
 
+export const EditSub = () => {
     const navigate = useNavigate();
-    const [seletCategory, setSeletCategory] = useState<any>(null)
     const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-    const ChangeCategory = (value: number) => {
-        setSeletCategory(value)
-    }
 
     const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
+    const { id } = useParams()
 
-    const { mutate } = useMutateSub();
-    const { data } = getUseSub()
+    const { data } = getSubId(id);
+    const { mutate } = mutateSubEdit(id);
 
     const onFinish = (values: CategoryData) => {
         console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
-        formData.append("parent", seletCategory!.toString());
+        formData.append("parent", "");
         if (values.img) {
             formData.append("image", values.img.file);
         }
@@ -66,20 +63,15 @@ export const CreateSub: React.FC = () => {
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
             <Button onClick={() => navigate("/home/subcategory")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
-            <Form
+
+            {data && <Form
+                initialValues={data}
                 onFinish={onFinish}
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
                 layout="vertical"
                 style={{ maxWidth: 600 }}
             >
-                <Form.Item>
-                    <Select onChange={ChangeCategory}
-                        options={data?.results?.map((item: any) => ({
-                            value: item.id,
-                            label: item.title
-                        }))} />
-                </Form.Item>
                 <Form.Item style={{}} label="CategoryName" name="title">
                     <Input size="large" />
                 </Form.Item>
@@ -98,14 +90,14 @@ export const CreateSub: React.FC = () => {
                             <div style={{ marginTop: 8 }}>Upload</div>
                         </button>
                     </Upload.Dragger>
+                    {!fileList.length && <Image src={data.image} alt="" />}
                 </Form.Item>
                 <Form.Item>
                     <Button htmlType="submit" type="primary">
                         Submit
                     </Button>
                 </Form.Item>
-            </Form>
+            </Form>}
         </div>
     );
-};
-
+}
