@@ -18,8 +18,7 @@ export const CategoryCard: React.FC = () => {
             },
         });
     };
-    const dataSource = products
-        ? products?.map((product: any) => ({
+    const dataSource = products? products?.map((product: any) => ({
             key: product.id.toString(),
             name: product.title,
             id: product.id,

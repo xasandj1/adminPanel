@@ -1,33 +1,33 @@
-import { UploadOutlined, UserAddOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { FolderOpenOutlined, FolderOutlined, ForkOutlined, LogoutOutlined, MergeOutlined, SolutionOutlined, UploadOutlined, UserAddOutlined, UserOutlined } from '@ant-design/icons'
 export const layoutData = [
     {
         id: "1",
         name: 'Category-List',
         path: "/home",
-        icon: UserAddOutlined,
+        icon: FolderOutlined,
 
     },
     {
         id: "3",
-        icon: VideoCameraOutlined,
+        icon: FolderOpenOutlined,
         name: 'SubCategory-List',
         path: "subcategory"
     },
     {
         id: "4",
-        icon: UploadOutlined,
-        name: 'Products',
+        icon: ForkOutlined ,
+        name: 'Brands',
         path: "/home"
     },
     {
         id: "5",
         icon: UserAddOutlined,
-        name: 'User',
+        name: 'Profile',
         path: "/home"
     },
     {
         id: "6",
-        icon: UserOutlined,
+        icon: LogoutOutlined ,
         name: 'Logout',
         path: "/home"
     },

@@ -4,6 +4,7 @@ import {
     Form,
     Image,
     Input,
+    Select,
     Upload,
     UploadFile,
     UploadProps,
@@ -46,7 +47,6 @@ export const EditSub = () => {
         console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
-        formData.append("parent", "");
         if (values.img) {
             formData.append("image", values.img.file);
         }
@@ -92,6 +92,16 @@ export const EditSub = () => {
                     </Upload.Dragger>
                     {!fileList.length && <Image src={data.image} alt="" />}
                 </Form.Item>
+                {/* <Form.Item>
+                    <Select
+                        defaultValue={Title.parent.title}
+                        style={{ width: "100%" }}
+                        options={data?.map((item) => ({
+                            value: item.id,
+                            label: item.title
+                        }))}
+                    />
+                </Form.Item> */}
                 <Form.Item>
                     <Button htmlType="submit" type="primary">
                         Submit
