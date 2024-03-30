@@ -7,6 +7,7 @@ import { CreateCategory } from './pages/Create'
 import { EditCategory } from './pages/Edit/Edit'
 import { CreateSub } from './pages/CreateSub'
 import { EditSub } from './pages/EditSub'
+import { Brands } from './pages/Brands'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/home' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='subcategory' element={<SubCategoryList />} />
+          <Route path='brands' element={<Brands />} />
           <Route path="create" element={<CreateCategory />} />
           <Route path="createSub" element={<CreateSub />} />
           <Route path='edit-category/:id' element={<EditCategory />} />

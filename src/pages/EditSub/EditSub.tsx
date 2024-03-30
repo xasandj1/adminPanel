@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSubId } from "./service/query/getSub";
 import { mutateSubEdit } from "./service/mutation/mutateSubEdit";
+import { useGetParent } from "./service/query/useGetParent";
 
 
 type CategoryData = {
@@ -40,7 +41,7 @@ export const EditSub = () => {
         setFileList(newFileList);
     const { id } = useParams()
 
-    const { data } = getSubId(id);
+    const { data: data1 } = getSubId(id);
     const { mutate } = mutateSubEdit(id);
 
     const onFinish = (values: CategoryData) => {
@@ -60,12 +61,15 @@ export const EditSub = () => {
             },
         });
     };
+    // const { data: Prtitle } = useGetParent(id as string)
+    // console.log(Prtitle);
+    
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
             <Button onClick={() => navigate("/home/subcategory")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
 
-            {data && <Form
-                initialValues={data}
+            {data1 && <Form
+                initialValues={data1}
                 onFinish={onFinish}
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
@@ -75,6 +79,16 @@ export const EditSub = () => {
                 <Form.Item style={{}} label="CategoryName" name="title">
                     <Input size="large" />
                 </Form.Item>
+                {/* <Form.Item>
+                    <Select
+                        defaultValue={Prtitle?.parent.title}
+                        style={{ width: "100%" }}
+                        options={data1?.map((item: any) => ({
+                            value: item.id,
+                            label: item.title
+                        }))}
+                    />
+                </Form.Item> */}
                 <Form.Item label="Upload" name="img">
                     <Upload.Dragger
                         name="img"
@@ -90,18 +104,8 @@ export const EditSub = () => {
                             <div style={{ marginTop: 8 }}>Upload</div>
                         </button>
                     </Upload.Dragger>
-                    {!fileList.length && <Image src={data.image} alt="" />}
+                    {!fileList.length && <Image width={"200px"} src={data1.image} alt="" />}
                 </Form.Item>
-                {/* <Form.Item>
-                    <Select
-                        defaultValue={Title.parent.title}
-                        style={{ width: "100%" }}
-                        options={data?.map((item) => ({
-                            value: item.id,
-                            label: item.title
-                        }))}
-                    />
-                </Form.Item> */}
                 <Form.Item>
                     <Button htmlType="submit" type="primary">
                         Submit

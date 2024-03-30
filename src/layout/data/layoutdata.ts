@@ -1,4 +1,4 @@
-import { FolderOpenOutlined, FolderOutlined, ForkOutlined, LogoutOutlined, MergeOutlined, SolutionOutlined, UploadOutlined, UserAddOutlined, UserOutlined } from '@ant-design/icons'
+import { FolderOpenOutlined, FolderOutlined, ForkOutlined, LogoutOutlined, UserAddOutlined, } from '@ant-design/icons'
 export const layoutData = [
     {
         id: "1",
@@ -15,9 +15,9 @@ export const layoutData = [
     },
     {
         id: "4",
-        icon: ForkOutlined ,
+        icon: ForkOutlined,
         name: 'Brands',
-        path: "/home"
+        path: "brands"
     },
     {
         id: "5",
@@ -27,7 +27,7 @@ export const layoutData = [
     },
     {
         id: "6",
-        icon: LogoutOutlined ,
+        icon: LogoutOutlined,
         name: 'Logout',
         path: "/home"
     },
