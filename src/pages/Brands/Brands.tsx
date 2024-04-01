@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { useGetBrands } from './service/query/useGetBrands';
 import { useMutateBrands } from './service/mutate/useMutateBrands';
 import { ClientQuery } from '../../config/queryClient';
+import "./sass/brand.scss"
 
 export const Brands = () => {
     const { mutate } = useMutateBrands()
     const { data } = useGetBrands()
-    console.log(data?.results);
-
+    console.log(data);
+    
 
     const handleDelete = (id: number) => {
         mutate(id, {
@@ -30,7 +31,7 @@ export const Brands = () => {
                     <Button type="primary" onClick={() => handleDelete(product.id)}>
                         Delete
                     </Button>
-                    <Link to={`/home/edit-subcategory/${product.id}`}>
+                    <Link to={`/home/edit-brands/${product.id}`}>
                         <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
                     </Link>
                 </div>
@@ -66,12 +67,10 @@ export const Brands = () => {
     return (
         <div>
             <div className='create__button'>
-                {/* <Link to={"/home/createSub"} > */}
+                <Link to={"/home/createBrands"} >
                     <Button type='primary'>Create</Button>
-                {/* </Link> */}
+                </Link>
             </div>
-            <br />
-            <br />
             <Table columns={columns} dataSource={dataSource} />
         </div>
     )

@@ -1,19 +1,16 @@
+import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import {
     Button,
     Form,
-    Image,
     Input,
     Upload,
     UploadFile,
     UploadProps,
     message,
 } from "antd";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getSubId } from "./service/query/getSub";
-import { mutateSubEdit } from "./service/mutation/mutateSubEdit";
-
+import { useNavigate } from "react-router-dom";
+import { useMutateBrands } from "./service/Mutate/useMutateBrand";
 
 type CategoryData = {
     title: string;
@@ -30,45 +27,36 @@ export interface FormTypes {
         title: string;
     };
 }
-
-export const EditSub = () => {
+export const CreateBrands: React.FC = () => {
     const navigate = useNavigate();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
-    const { id } = useParams()
 
-    const { data} = getSubId(id);
-    
-    const { mutate } = mutateSubEdit(id);
-
+    const { mutate } = useMutateBrands();
     const onFinish = (values: CategoryData) => {
         console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
+        formData.append("parent", "");
         if (values.img) {
             formData.append("image", values.img.file);
         }
         mutate(formData, {
             onSuccess: () => {
                 message.success("success");
-                navigate("/home/subcategory")
+                navigate("/home/brands")
             },
             onError: (error) => {
                 console.log(error);
             },
         });
     };
-    // const { data: Prtitle } = useGetParent(id as string)
-    // console.log(Prtitle);
-    
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
-            <Button onClick={() => navigate("/home/subcategory")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
-
-            {data && <Form
-                initialValues={data}
+            <Button onClick={() => navigate("/home/brands")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
+            <Form
                 onFinish={onFinish}
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
@@ -78,16 +66,6 @@ export const EditSub = () => {
                 <Form.Item style={{}} label="CategoryName" name="title">
                     <Input size="large" />
                 </Form.Item>
-                {/* <Form.Item>
-                    <Select
-                        defaultValue={Prtitle?.parent.title}
-                        style={{ width: "100%" }}
-                        options={data1?.map((item: any) => ({
-                            value: item.id,
-                            label: item.title
-                        }))}
-                    />
-                </Form.Item> */}
                 <Form.Item label="Upload" name="img">
                     <Upload.Dragger
                         name="img"
@@ -103,14 +81,14 @@ export const EditSub = () => {
                             <div style={{ marginTop: 8 }}>Upload</div>
                         </button>
                     </Upload.Dragger>
-                    {!fileList.length && <Image width={"200px"} src={data.image} alt="" />}
                 </Form.Item>
                 <Form.Item>
                     <Button htmlType="submit" type="primary">
                         Submit
                     </Button>
                 </Form.Item>
-            </Form>}
+            </Form>
         </div>
     );
-}
+};
+

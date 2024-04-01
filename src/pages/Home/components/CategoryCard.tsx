@@ -68,8 +68,6 @@ export const CategoryCard: React.FC = () => {
                     <Button type='primary'>Create</Button>
                 </Link>
             </div>
-            <br />
-            <br />
             <Table columns={columns} dataSource={dataSource} />
         </div>
     )

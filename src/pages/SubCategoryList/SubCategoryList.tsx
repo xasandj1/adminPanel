@@ -4,6 +4,7 @@ import { getSubCategoryProduct } from "./service/Query/getSubCategory";
 import { mutSubCatgeroy } from "./service/Mutation/mutSubCatgeroy";
 import { ClientQuery } from "../../config/queryClient";
 import { nanoid } from "nanoid";
+import "./sass/subCategory.scss"
 
 export const SubCategoryList = () => {
     const { mutate } = mutSubCatgeroy()
@@ -69,8 +70,7 @@ export const SubCategoryList = () => {
                     <Button type='primary'>Create</Button>
                 </Link>
             </div>
-            <br />
-            <br />
+
             <Table columns={columns} dataSource={dataSource} />
         </div>
     )

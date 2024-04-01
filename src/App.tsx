@@ -8,6 +8,8 @@ import { EditCategory } from './pages/Edit/Edit'
 import { CreateSub } from './pages/CreateSub'
 import { EditSub } from './pages/EditSub'
 import { Brands } from './pages/Brands'
+import { CreateBrands } from './pages/CreateBrands'
+import { EditBrands } from './pages/EditBrands'
 
 const App = () => {
   return (
@@ -20,8 +22,10 @@ const App = () => {
           <Route path='brands' element={<Brands />} />
           <Route path="create" element={<CreateCategory />} />
           <Route path="createSub" element={<CreateSub />} />
+          <Route path='createBrands' element={<CreateBrands />} />
           <Route path='edit-category/:id' element={<EditCategory />} />
           <Route path='edit-subcategory/:id' element={<EditSub />} />
+          <Route path='edit-brands/:id' element={<EditBrands />} />
         </Route>
       </Routes>
     </>

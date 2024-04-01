@@ -87,7 +87,7 @@ export const EditCategory: React.FC = () => {
                                 <div style={{ marginTop: 8 }}>Upload</div>
                             </button>
                         </Upload.Dragger>
-                        {!fileList.length && <Image src={CategoryData.image} alt="" />}
+                        {!fileList.length && <Image src={CategoryData.image} width={200} alt="" />}
                     </Form.Item>
                     <Form.Item>
                         <Button htmlType="submit" type="primary">

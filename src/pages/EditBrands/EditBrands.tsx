@@ -11,8 +11,10 @@ import {
 } from "antd";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSubId } from "./service/query/getSub";
-import { mutateSubEdit } from "./service/mutation/mutateSubEdit";
+import { useMutateBrands } from "../Brands/service/mutate/useMutateBrands";
+import { useGetBrand } from "./service/Query/useGetBrands";
+import { useMutateBrandsId } from "./service/Mutate/useMutateBrands";
+
 
 
 type CategoryData = {
@@ -31,7 +33,7 @@ export interface FormTypes {
     };
 }
 
-export const EditSub = () => {
+export const EditBrands = () => {
     const navigate = useNavigate();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
@@ -39,12 +41,14 @@ export const EditSub = () => {
         setFileList(newFileList);
     const { id } = useParams()
 
-    const { data} = getSubId(id);
-    
-    const { mutate } = mutateSubEdit(id);
+    const { data } = useGetBrand(id);
+
+    const { mutate } = useMutateBrandsId(id);
 
     const onFinish = (values: CategoryData) => {
         console.log(values);
+
+        
         const formData = new FormData();
         formData.append("title", values.title);
         if (values.img) {
@@ -53,19 +57,17 @@ export const EditSub = () => {
         mutate(formData, {
             onSuccess: () => {
                 message.success("success");
-                navigate("/home/subcategory")
+                navigate("/home/brands")
             },
             onError: (error) => {
                 console.log(error);
             },
         });
     };
-    // const { data: Prtitle } = useGetParent(id as string)
-    // console.log(Prtitle);
-    
+
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
-            <Button onClick={() => navigate("/home/subcategory")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
+            <Button onClick={() => navigate("/home/brands")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
 
             {data && <Form
                 initialValues={data}
@@ -88,9 +90,9 @@ export const EditSub = () => {
                         }))}
                     />
                 </Form.Item> */}
-                <Form.Item label="Upload" name="img">
+                <Form.Item label="Upload" name="image">
                     <Upload.Dragger
-                        name="img"
+                        name="image"
                         beforeUpload={() => false}
                         listType="picture-card"
                         onChange={handleChange}
