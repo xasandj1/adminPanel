@@ -8,9 +8,7 @@ import "./sass/brand.scss"
 
 export const Brands = () => {
     const { mutate } = useMutateBrands()
-    const { data } = useGetBrands()
-    console.log(data);
-    
+    const { data } = useGetBrands()    
 
     const handleDelete = (id: number) => {
         mutate(id, {

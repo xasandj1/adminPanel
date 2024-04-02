@@ -10,6 +10,7 @@ import { EditSub } from './pages/EditSub'
 import { Brands } from './pages/Brands'
 import { CreateBrands } from './pages/CreateBrands'
 import { EditBrands } from './pages/EditBrands'
+import { Atributes } from './pages/Atributes'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path='subcategory' element={<SubCategoryList />} />
           <Route path='brands' element={<Brands />} />
+          <Route path='attribute' element={<Atributes />} />
           <Route path="create" element={<CreateCategory />} />
           <Route path="createSub" element={<CreateSub />} />
           <Route path='createBrands' element={<CreateBrands />} />

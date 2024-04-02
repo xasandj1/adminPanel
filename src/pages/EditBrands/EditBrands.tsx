@@ -5,64 +5,49 @@ import {
     Image,
     Input,
     Upload,
-    UploadFile,
-    UploadProps,
     message,
 } from "antd";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutateBrands } from "../Brands/service/mutate/useMutateBrands";
 import { useGetBrand } from "./service/Query/useGetBrands";
 import { useMutateBrandsId } from "./service/Mutate/useMutateBrands";
-
-
 
 type CategoryData = {
     title: string;
     img: {
         file: File;
-        fileList: UploadFile;
     };
 };
-export interface FormTypes {
-    data: {
-        id: number;
-        img: string;
-        parent: null;
-        title: string;
-    };
-}
 
 export const EditBrands = () => {
     const navigate = useNavigate();
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-    const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-        setFileList(newFileList);
-    const { id } = useParams()
+    const { id } = useParams();
 
     const { data } = useGetBrand(id);
-
     const { mutate } = useMutateBrandsId(id);
 
-    const onFinish = (values: CategoryData) => {
-        console.log(values);
+    const [fileList, setFileList] = useState<File[]>([]);
 
-        
+    const onFinish = (values: CategoryData) => {
         const formData = new FormData();
         formData.append("title", values.title);
         if (values.img) {
             formData.append("image", values.img.file);
         }
+
         mutate(formData, {
             onSuccess: () => {
-                message.success("success");
-                navigate("/home/brands")
+                message.success("Success");
+                navigate("/home/brands");
             },
             onError: (error) => {
-                console.log(error);
+                console.error(error);
             },
         });
+    };
+
+    const handleFileChange = (file: File) => {
+        setFileList([file]);
     };
 
     return (
@@ -77,42 +62,31 @@ export const EditBrands = () => {
                 layout="vertical"
                 style={{ maxWidth: 600 }}
             >
-                <Form.Item style={{}} label="CategoryName" name="title">
+                <Form.Item label="CategoryName" name="title">
                     <Input size="large" />
                 </Form.Item>
-                {/* <Form.Item>
-                    <Select
-                        defaultValue={Prtitle?.parent.title}
-                        style={{ width: "100%" }}
-                        options={data1?.map((item: any) => ({
-                            value: item.id,
-                            label: item.title
-                        }))}
-                    />
-                </Form.Item> */}
-                <Form.Item label="Upload" name="image">
-                    <Upload.Dragger
-                        name="image"
-                        beforeUpload={() => false}
-                        listType="picture-card"
-                        onChange={handleChange}
-                        fileList={fileList}
-                        multiple={false}
+
+                <Form.Item label="Upload" name="img">
+                    <Upload
+                        listType="picture"
                         maxCount={1}
+                        beforeUpload={() => false}
+                        onChange={(info) => {
+                            const file = info.fileList[0]?.originFileObj;
+                            if (file) {
+                                handleFileChange(file);
+                            }
+                        }}
                     >
-                        <button style={{ border: 0, background: "none" }} type="button">
-                            <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Upload</div>
-                        </button>
-                    </Upload.Dragger>
-                    {!fileList.length && <Image width={"200px"} src={data.image} alt="" />}
+                        <Button icon={<PlusOutlined />} style={{ marginBottom: '8px' }}>Upload</Button>
+                    </Upload>
+                    {fileList.length > 0 && <Image width={200} src={URL.createObjectURL(fileList[0])} />}
                 </Form.Item>
+
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">
-                        Submit
-                    </Button>
+                    <Button htmlType="submit" type="primary">Submit</Button>
                 </Form.Item>
             </Form>}
         </div>
     );
-}
+};

@@ -1,4 +1,4 @@
-import { FolderOpenOutlined, FolderOutlined, ForkOutlined, LogoutOutlined, UserAddOutlined, } from '@ant-design/icons'
+import { FolderOpenOutlined, FolderOutlined, FontColorsOutlined, ForkOutlined, LogoutOutlined, UserAddOutlined, } from '@ant-design/icons'
 export const layoutData = [
     {
         id: "1",
@@ -21,9 +21,9 @@ export const layoutData = [
     },
     {
         id: "5",
-        icon: UserAddOutlined,
-        name: 'Profile',
-        path: "/home"
+        icon: FontColorsOutlined,
+        name: 'Attribute',
+        path: "attribute"
     },
     {
         id: "6",

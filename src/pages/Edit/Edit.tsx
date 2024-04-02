@@ -14,6 +14,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEditCategory } from "./service/mutation/useEditCategory";
 import { useGetId } from "./service/query/useGetId";
 
+
+
 type CategoryData = {
     title: string;
     img: {
@@ -30,15 +32,16 @@ export interface FormTypes {
     };
 }
 export const EditCategory: React.FC = () => {
+    const { id } = useParams<{ id: string }>()
     const navigate = useNavigate();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
-    const { id } = useParams()
-    const { data: CategoryData } = useGetId(id);
 
     const { mutate } = useEditCategory(id);
+    const { data: productData } = useGetId(id)
+
     const onFinish = (values: CategoryData) => {
         console.log(values);
         const formData = new FormData();
@@ -57,45 +60,54 @@ export const EditCategory: React.FC = () => {
             },
         });
     };
+    console.log(productData);
+    console.log(fileList);
+
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
             <Button onClick={() => navigate("/home")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
-            {CategoryData && (
-                <Form
-                    initialValues={CategoryData}
-                    onFinish={onFinish}
-                    labelCol={{ span: 4 }}
-                    wrapperCol={{ span: 14 }}
-                    layout="vertical"
-                    style={{ maxWidth: 600 }}
-                >
-                    <Form.Item style={{}} label="CategoryName" name="title">
-                        <Input size="large" />
-                    </Form.Item>
-                    <Form.Item label="Upload" name="img">
-                        <Upload.Dragger
-                            name="img"
-                            beforeUpload={() => false}
-                            listType="picture-card"
-                            onChange={handleChange}
-                            fileList={fileList}
-                            multiple={false}
-                            maxCount={1}
-                        >
-                            <button style={{ border: 0, background: "none" }} type="button">
-                                <PlusOutlined />
-                                <div style={{ marginTop: 8 }}>Upload</div>
-                            </button>
-                        </Upload.Dragger>
-                        {!fileList.length && <Image src={CategoryData.image} width={200} alt="" />}
-                    </Form.Item>
-                    <Form.Item>
-                        <Button htmlType="submit" type="primary">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            )}
+            {
+                productData && (
+                    <Form
+                        initialValues={productData}
+                        onFinish={onFinish}
+                        labelCol={{ span: 4 }}
+                        wrapperCol={{ span: 14 }}
+                        layout="vertical"
+                        style={{ maxWidth: 600 }}
+                    >
+                        <Form.Item style={{}} label="CategoryName" name="title">
+                            <Input size="large" />
+                        </Form.Item>
+                        <Form.Item label="Upload" name="img">
+                            <Upload.Dragger
+                                name="img"
+                                beforeUpload={() => false}
+                                listType="picture-card"
+                                onChange={handleChange}
+                                fileList={fileList}
+                                multiple={false}
+                                maxCount={1}
+                            >
+                                <button style={{ border: 0, background: "none" }} type="button">
+                                    <PlusOutlined />
+                                    <div style={{ marginTop: 8 }}>Upload</div>
+                                </button>
+                            </Upload.Dragger>
+                        </Form.Item>
+                        {
+                            !fileList.length && <Image src={productData.image} alt="images" />
+                        }
+                        <br />
+                        <br />
+                        <Form.Item>
+                            <Button htmlType="submit" type="primary">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                )
+            }
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { FormTypes } from "../../../Create";
 
 export const useMutateBrandsId = (id: number) => {
     return useMutation({
-        mutationFn: (data: id) =>
+        mutationFn: (data: FormTypes) =>
             request
                 .put<FormTypes>(`/brand/${id}/`, data, {
                     headers: {
