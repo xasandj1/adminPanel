@@ -5,7 +5,7 @@ export const useGetAtribute = () => {
     return (
         useQuery({
             queryKey: ["attribute"],
-            queryFn: () => request.get("/attribute-value/").then((res) => res.data)
+            queryFn: () => request.get("/attribute/").then((res) => res.data)
         })
     )
 }

@@ -28,35 +28,12 @@ export const Atributes: React.FC = () => {
     });
   };
   console.log(data);
-
-  const columns: TableProps<DataType>['columns'] = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
-      title: "Category Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Category Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Change",
-      dataIndex: "change",
-      key: "change",
-    },
-  ];
   const dataSource = data
     ? data?.results.map((product: any) => ({
       key: nanoid(),
       name: product.title,
       id: product.id,
-      img: product.image,
+      parent: product.category,
       change: (
         <div>
           <Link to={`/home/edit-brands/${product.id}`}>
@@ -70,10 +47,39 @@ export const Atributes: React.FC = () => {
     }))
     : [];
 
+  const columns: TableProps<DataType>['columns'] = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Parent",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Category Name",
+      dataIndex: "parent",
+      key: "parent",
+    },
+    {
+      title: "Change",
+      dataIndex: "change",
+      key: "change",
+    },
+  ];
+
+
   return (
-    <>
+    <div>
+      <div className='create__button'>
+        <Link to={"/home/createBrands"} >
+          <Button type='primary'>Create</Button>
+        </Link>
+      </div>
       <Table columns={columns} dataSource={dataSource} />
-    </>
+    </div>
   )
 };
 
