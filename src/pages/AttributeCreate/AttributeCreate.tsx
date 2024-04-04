@@ -37,6 +37,7 @@ export const AttributeCreate = ({ subCategoryId }: { subCategoryId: number }) =>
                 values: item.list?.map((subItem: SubItem) => subItem.value) || []
             }))
         }
+
         mutate(payload, {
             onSuccess: () => {
                 message.success("Success");
