@@ -11,6 +11,7 @@ import { Brands } from './pages/Brands'
 import { CreateBrands } from './pages/CreateBrands'
 import { EditBrands } from './pages/EditBrands'
 import { Atributes } from './pages/Atributes'
+import { AttributeCreate } from './pages/AttributeCreate'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="create" element={<CreateCategory />} />
           <Route path="createSub" element={<CreateSub />} />
           <Route path='createBrands' element={<CreateBrands />} />
+          <Route path='createAttributes' element={<AttributeCreate />} />
           <Route path='edit-category/:id' element={<EditCategory />} />
           <Route path='edit-subcategory/:id' element={<EditSub />} />
           <Route path='edit-brands/:id' element={<EditBrands />} />

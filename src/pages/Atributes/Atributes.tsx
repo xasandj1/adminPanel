@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image, message, Space, Table, Tag } from 'antd';
+import { Button, message, Table, } from 'antd';
 import type { TableProps } from 'antd';
 import { nanoid } from 'nanoid';
 import { useGetAtribute } from './service/Query/useGetAtribute';
@@ -33,7 +33,7 @@ export const Atributes: React.FC = () => {
       key: nanoid(),
       name: product.title,
       id: product.id,
-      parent: product.category,
+      parent: product.title,
       change: (
         <div>
           <Link to={`/home/edit-brands/${product.id}`}>
@@ -54,12 +54,12 @@ export const Atributes: React.FC = () => {
       key: "id",
     },
     {
-      title: "Parent",
+      title: "Title",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Category Name",
+      title: "Parent",
       dataIndex: "parent",
       key: "parent",
     },
@@ -74,7 +74,7 @@ export const Atributes: React.FC = () => {
   return (
     <div>
       <div className='create__button'>
-        <Link to={"/home/createBrands"} >
+        <Link to={"/home/createAttributes"} >
           <Button type='primary'>Create</Button>
         </Link>
       </div>

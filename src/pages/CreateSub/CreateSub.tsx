@@ -5,14 +5,17 @@ import {
     Form,
     Input,
     Select,
+    Tabs,
+    TabsProps,
     Upload,
     UploadFile,
     UploadProps,
     message,
 } from "antd";
-import { useNavigate } from "react-router-dom";
 import { getUseSub } from "./service/Query/getUseSub";
 import { useMutateSub } from "./service/Mutation/getCreatSub";
+import "./sass/createSub.scss"
+import { AttributeCreate } from "../AttributeCreate";
 
 type CategoryData = {
     title: string;
@@ -31,9 +34,9 @@ export interface FormTypes {
 }
 export const CreateSub: React.FC = () => {
 
-    const navigate = useNavigate();
     const [seletCategory, setSeletCategory] = useState<any>(null)
     const [fileList, setFileList] = useState<UploadFile[]>([]);
+    const [ID, setId] = useState(undefined)
 
     const ChangeCategory = (value: number) => {
         setSeletCategory(value)
@@ -54,19 +57,22 @@ export const CreateSub: React.FC = () => {
             formData.append("image", values.img.file);
         }
         mutate(formData, {
-            onSuccess: () => {
+            onSuccess: (data) => {
                 message.success("success");
-                navigate("/home/subcategory")
+                // navigate("/home/")
+                setId(data?.data?.id)
+
             },
             onError: (error) => {
                 console.log(error);
             },
         });
     };
-    return (
-        <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
-            <Button onClick={() => navigate("/home/subcategory")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
-            <Form
+    const items: TabsProps["items"] = [
+        {
+            key: "1",
+            label: "Sub Category",
+            children: <Form
                 onFinish={onFinish}
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
@@ -105,6 +111,16 @@ export const CreateSub: React.FC = () => {
                     </Button>
                 </Form.Item>
             </Form>
+        },
+        {
+            key: "2",
+            label: "Attribute",
+            children: <AttributeCreate subCategoryId={ID} />
+        }
+    ]
+    return (
+        <div className="create">
+            <Tabs items={items} defaultActiveKey="1" />
         </div>
     );
 };
