@@ -1,4 +1,4 @@
-import { FolderOpenOutlined, FolderOutlined, FontColorsOutlined, ForkOutlined, LogoutOutlined, UserAddOutlined, } from '@ant-design/icons'
+import { BarsOutlined, DingdingOutlined, FolderOutlined, FormatPainterOutlined, LogoutOutlined, } from '@ant-design/icons'
 export const layoutData = [
     {
         id: "1",
@@ -9,19 +9,19 @@ export const layoutData = [
     },
     {
         id: "3",
-        icon: FolderOpenOutlined,
+        icon: BarsOutlined,
         name: 'SubCategory-List',
         path: "subcategory"
     },
     {
         id: "4",
-        icon: ForkOutlined,
+        icon: DingdingOutlined,
         name: 'Brands',
         path: "brands"
     },
     {
         id: "5",
-        icon: FontColorsOutlined,
+        icon: FormatPainterOutlined,
         name: 'Attribute',
         path: "attribute"
     },
