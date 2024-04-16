@@ -16,7 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../sass/products.scss"
 import { getSubCategoryProduct } from "../../SubCategoryList/service/Query/getSubCategory";
-// import { usePostProduct } from "./service/mutation/usePostCategory";
+import { mutateProducts } from "../service/Mutation/mutateProducts";
 
 type CategoryData = {
     title: string;
@@ -46,7 +46,7 @@ export const ProductsCreate: React.FC = () => {
         setFileList(newFileList);
 
 
-    // const { mutate } = usePostProduct();
+    const { mutate } = mutateProducts();
     const onFinish = (values: CategoryData) => {
         console.log(values);
         const formData = new FormData();
@@ -68,15 +68,15 @@ export const ProductsCreate: React.FC = () => {
         if (values.img) {
             formData.append("image", values.img.file);
         }
-        // mutate(formData, {
-        //     onSuccess: () => {
-        //         message.success("success");
-        //         navigate("/home/product")
-        //     },
-        //     onError: (error) => {
-        //         console.log(error);
-        //     },
-        // });
+        mutate(formData, {
+            onSuccess: () => {
+                message.success("success");
+                navigate("/home/products")
+            },
+            onError: (error) => {
+                console.log(error);
+            },
+        });
     };
 
 
@@ -110,12 +110,11 @@ export const ProductsCreate: React.FC = () => {
                         }))}
                     />
                 </Form.Item>
-
                 <Space>
-                    <Form.Item name={"is_new"} label="Is New">
+                    <Form.Item className="content__new" name={"is_new"} label="Is New">
                         <Switch />
                     </Form.Item>
-                    <Form.Item name={"is_available"} label="Is Available">
+                    <Form.Item className="content__new" name={"is_available"} label="Is Available">
                         <Switch />
                     </Form.Item>
                 </Space>

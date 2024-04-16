@@ -1,6 +1,6 @@
-.switch_div {
-    display: flex;
-    align-items: center;
+.content__new{
+    display: flex !important;
+    align-items: center !important;
     gap: 20px;
-    margin-bottom: 20px;
+    flex-direction: none !important;
 }
