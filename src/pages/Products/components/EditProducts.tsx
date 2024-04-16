@@ -77,7 +77,7 @@ export const EditProducts: React.FC = () => {
         mutate(formData, {
             onSuccess: () => {
                 message.success("success");
-                navigate("/home/product")
+                navigate("/home/products")
             },
             onError: (error) => {
                 console.log(error);

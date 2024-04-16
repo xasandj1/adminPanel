@@ -58,7 +58,7 @@ export const EditBanner: React.FC = () => {
         mutate(formData, {
             onSuccess: () => {
                 message.success("success");
-                navigate("/home")
+                navigate("/home/banner")
             },
             onError: (error) => {
                 console.log(error);
