@@ -12,3 +12,10 @@ body {
     background: white;
     font-family: "Roboto", sans-serif;
 }
+:where(.css-dev-only-do-not-override-42nv3w).ant-col-4 {
+    --ant-display: block;
+    display: block;
+    display: var(--ant-display);
+    flex: 0 0 16.666666666666664%;
+    max-width: 100px
+}

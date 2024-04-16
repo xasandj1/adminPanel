@@ -9,12 +9,15 @@ import { EditSub } from './pages/EditSub'
 import { Brands } from './pages/Brands'
 import { CreateBrands } from './pages/CreateBrands'
 import { EditBrands } from './pages/EditBrands'
-import { Atributes } from './pages/Atributes'
-import { AttributeCreate } from './pages/Atributes/components/AttributeCreate'
+// import { Atributes } from './pages/Atributes'
+// import { AttributeCreate } from './pages/Atributes/components/AttributeCreate'
 import { CreateSubCategory } from './pages/CreateSub'
 import { Products } from './pages/Products'
 import { ProductsCreate } from './pages/Products/components/ProductsCreate'
 import { EditProducts } from './pages/Products/components/EditProducts'
+import { Banners } from './pages/Banners'
+import { CreateBanner } from './pages/Banners/components/CreateBanner'
+import { EditBanner } from './pages/Banners/components/EditBanner'
 
 const App = () => {
   return (
@@ -24,18 +27,21 @@ const App = () => {
         <Route path='/home' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='subcategory' element={<SubCategoryList />} />
+          <Route path='banner' element={<Banners />} />
           <Route path='brands' element={<Brands />} />
-          <Route path='attribute' element={<Atributes />} />
+          {/* <Route path='attribute' element={<Atributes />} /> */}
           <Route path='products' element={<Products />} />
           <Route path="create" element={<CreateCategory />} />
-          <Route path='createAttributes' element={<AttributeCreate />} />
+          {/* <Route path='createAttributes' element={<AttributeCreate />} /> */}
           <Route path="createSub" element={<CreateSubCategory />} />
           <Route path="createProducts" element={<ProductsCreate />} />
           <Route path='createBrands' element={<CreateBrands />} />
+          <Route path='createBanners' element={<CreateBanner />} />
           <Route path='edit-category/:id' element={<EditCategory />} />
           <Route path='edit-subcategory/:id' element={<EditSub />} />
           <Route path='edit-brands/:id' element={<EditBrands />} />
           <Route path='edit-products/:id' element={<EditProducts />} />
+          <Route path='edit-banner/:id' element={<EditBanner />} />
         </Route>
       </Routes>
     </>
