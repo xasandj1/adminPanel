@@ -60,8 +60,7 @@ export const EditCategory: React.FC = () => {
             },
         });
     };
-    console.log(productData);
-    console.log(fileList);
+ 
 
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
@@ -96,7 +95,7 @@ export const EditCategory: React.FC = () => {
                             </Upload.Dragger>
                         </Form.Item>
                         {
-                            !fileList.length && <Image src={productData.image} alt="images" />
+                            !fileList.length && <Image src={productData.image} width={200} alt="images" />
                         }
                         <br />
                         <br />

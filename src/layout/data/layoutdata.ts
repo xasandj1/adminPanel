@@ -35,6 +35,6 @@ export const layoutData = [
         id: "6",
         icon: LogoutOutlined,
         name: 'Logout',
-        path: "/home"
+        path: "/"
     },
 ]

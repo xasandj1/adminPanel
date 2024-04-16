@@ -81,7 +81,7 @@ export const ProductsCreate: React.FC = () => {
 
 
 
-    const { data } = getSubCategoryProduct  ()
+    const { data } = getSubCategoryProduct()
 
 
     const ChangeCategory = (value: number) => {
@@ -92,7 +92,7 @@ export const ProductsCreate: React.FC = () => {
 
     return (
         <div style={{ position: "relative", height: "650px", paddingLeft: "150px", paddingTop: "80px" }}>
-            <Button onClick={() => navigate("/home/product")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
+            <Button onClick={() => navigate("/home/products")} style={{ position: "absolute", left: "20px", top: "20px" }}>Back</Button>
             <Form
                 onFinish={onFinish}
                 labelCol={{ span: 4 }}

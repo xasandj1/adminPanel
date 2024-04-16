@@ -14,6 +14,7 @@ import { AttributeCreate } from './pages/Atributes/components/AttributeCreate'
 import { CreateSubCategory } from './pages/CreateSub'
 import { Products } from './pages/Products'
 import { ProductsCreate } from './pages/Products/components/ProductsCreate'
+import { EditProducts } from './pages/Products/components/EditProducts'
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='edit-category/:id' element={<EditCategory />} />
           <Route path='edit-subcategory/:id' element={<EditSub />} />
           <Route path='edit-brands/:id' element={<EditBrands />} />
+          <Route path='edit-products/:id' element={<EditProducts />} />
         </Route>
       </Routes>
     </>

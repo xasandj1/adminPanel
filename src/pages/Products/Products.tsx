@@ -12,7 +12,7 @@ export const Products: React.FC = () => {
     const handleDelete = (id: number) => {
         mutate(id, {
             onSuccess: () => {
-                message.success("Sizning habaringiz ochirildi");
+                message.success("Sizning habaringiz o'chirildi");
                 ClientQuery.invalidateQueries({ queryKey: ["product"] });
             },
         });
@@ -28,7 +28,7 @@ export const Products: React.FC = () => {
                     <Button type="primary" onClick={() => handleDelete(product.id)}>
                         Delete
                     </Button>
-                    <Link to={`/home/edit-product/${product.id}`}>
+                    <Link to={`/home/edit-products/${product.id}`}>
                         <Button type="primary" style={{ marginLeft: "10px" }}>Edit</Button>
                     </Link>
                 </div>
@@ -63,11 +63,11 @@ export const Products: React.FC = () => {
 
     return (
         <div>
-            <Link to={"/home/createProducts"}>
-                <Button>Create</Button>
-            </Link>
-            <br />
-            <br />
+            <div className="create__button">
+                <Link to={"/home/createProducts"}>
+                    <Button type='primary'>Create</Button>
+                </Link>
+            </div>
             <Table columns={columns} dataSource={dataSource} />
         </div>
     )
