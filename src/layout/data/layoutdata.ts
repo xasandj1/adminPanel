@@ -8,22 +8,28 @@ export const layoutData = [
 
     },
     {
-        id: "3",
+        id: "2",
         icon: BarsOutlined,
         name: 'SubCategory-List',
         path: "subcategory"
     },
     {
-        id: "4",
+        id: "3",
         icon: DingdingOutlined,
         name: 'Brands',
         path: "brands"
     },
     {
-        id: "5",
+        id: "4",
         icon: FormatPainterOutlined,
         name: 'Attribute',
         path: "attribute"
+    },
+    {
+        id: "5",
+        icon: LogoutOutlined,
+        name: 'Products',
+        path: "products"
     },
     {
         id: "6",

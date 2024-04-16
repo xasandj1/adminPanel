@@ -1,14 +1,31 @@
-import { request } from "../../../../config/request";
 import { useQuery } from "@tanstack/react-query";
+import { request } from "../../../../config/request";
 
-interface CategoryData {
+interface CategoryType {
     id: number;
-    name: string;
+    title: string;
+    image: string;
 }
 
-export const getUseSub = () => {
-    return useQuery<CategoryData[], Error>({
-        queryKey: ["category"],
-        queryFn: () => request.get("/category/").then((res) => res.data),
+interface CategoryListType {
+    count: number;
+    next: number | null;
+    previous: number | null;
+    results: CategoryType[];
+}
+
+export const useGetCategoryTitle = () => {
+    return useQuery({
+        queryKey: ['category'],
+        queryFn: () => request.get<CategoryListType>("/category/").then((res) => {
+            const { results } = res.data;
+            const dataSource = results.map((category) => ({
+                key: category.id.toString(),
+                id: category.id,
+                title: category.title,
+                image: category.image,
+            }));
+            return dataSource;
+        })
     });
 };

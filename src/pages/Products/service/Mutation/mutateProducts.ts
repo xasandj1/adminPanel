@@ -1,12 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { FormTypes } from "../../../Create/CreateCategory";
 import { request } from "../../../../config/request";
-
-export const useMutateBrands = () => {
+export const mutateProducts = () => {
     return useMutation({
         mutationFn: (data: FormData) =>
             request
-                .post<FormTypes>("/brand/", data, {
+                .post("/product/", data, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -14,4 +12,3 @@ export const useMutateBrands = () => {
                 .then((res) => res.data),
     });
 };
-
