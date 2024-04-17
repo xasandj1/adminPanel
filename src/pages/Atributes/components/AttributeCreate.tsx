@@ -42,18 +42,22 @@ export const AttributeCreate: React.FC<AttributeCreateProps> = ({ subCategoryId 
 
     const { mutate } = usePostAtt();
     const onFinish = (values: { items: Item[] }) => {
+        console.log(values);
+        
         const payload: Payload = {
             attr_list: values.items.map((item: Item) => ({
                 title: item.name,
                 category: [subCategoryId],
-                values: item.list?.map((subItem: SubItem) => subItem.value) || []
+                values: item.list?.map((subItem: SubItem) => subItem.value)
             })) as CategoryData[]
         };
+        console.log(payload);
+        
 
         mutate(payload, {
             onSuccess: () => {
                 message.success("Success");
-                navigate("/home/attribute");
+                navigate("/home/subcategory");
             },
             onError: (error: any) => {
                 console.error(error);
@@ -103,7 +107,7 @@ export const AttributeCreate: React.FC<AttributeCreateProps> = ({ subCategoryId 
                                                 <div style={{ display: 'flex', flexDirection: 'column', rowGap: 16 }}>
                                                     {subFields.map((subField) => (
                                                         <Space key={subField.key}>
-                                                            <Form.Item noStyle name={[subField.name, 'first']}>
+                                                            <Form.Item noStyle name={[subField.name, 'value']}>
                                                                 <Input size='large' placeholder={`value ${subField.name + 1}`} />
                                                             </Form.Item>
                                                             <CloseOutlined

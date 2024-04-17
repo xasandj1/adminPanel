@@ -48,7 +48,6 @@ export const CreateSubCategory: React.FC = () => {
 
     const { mutate } = usePostCategory();
     const onFinish = (values: CategoryData) => {
-        console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("parent", selectCategory!.toString());
