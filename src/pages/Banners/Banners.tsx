@@ -1,4 +1,3 @@
-// import { useGetCategory } from '../service/Query/useGetCategory'
 import { Button, Image, message, Table } from 'antd';
 import type { TableProps } from 'antd';
 import { Link } from 'react-router-dom';

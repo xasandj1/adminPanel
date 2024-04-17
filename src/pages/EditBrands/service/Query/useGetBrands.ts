@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { request } from "../../../../config/request"
 
-export const useGetBrand = (id: number) => {
+export const useGetBrand = (id: number | string) => {
     return (
         useQuery({
             queryKey: ["brandid", id],

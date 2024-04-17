@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { request } from "../../../../config/request"
 
-export const useGetId = (id: number) => {
+export const useGetId = (id: number | string) => {
     return (
         useQuery({
             queryKey: ["id", id],

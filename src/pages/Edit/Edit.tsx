@@ -39,8 +39,8 @@ export const EditCategory: React.FC = () => {
     const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
 
-    const { mutate } = useEditCategory(id);
-    const { data: productData } = useGetId(id)
+    const { mutate } = useEditCategory(id as string);
+    const { data: productData } = useGetId(id as string)
 
     const onFinish = (values: CategoryData) => {
         console.log(values);

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { request } from "../../../../config/request"
 
-export const getSubId = (id: number) => {
+export const getSubId = (id: number | string) => {
     return (
         useQuery({
             queryKey: ["subid", id],

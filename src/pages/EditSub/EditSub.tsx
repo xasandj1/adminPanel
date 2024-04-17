@@ -40,8 +40,8 @@ export const EditSub: React.FC = () => {
     const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
 
-    const { mutate } = mutateSubEdit(id);
-    const { data: productData } = getSubId(id)
+    const { mutate } = mutateSubEdit(id as string);
+    const { data: productData } = getSubId(id as string)
 
     const onFinish = (values: CategoryData) => {
 

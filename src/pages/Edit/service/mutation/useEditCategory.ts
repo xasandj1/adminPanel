@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { request } from "../../../../config/request";
 import { FormTypes } from "../../../Create";
 
-export const useEditCategory = (id: number) => {
+export const useEditCategory = (id: number | string) => {
     return useMutation({
         mutationFn: (data: FormData) =>
             request

@@ -1,4 +1,4 @@
-import { BarsOutlined, DingdingOutlined, FolderOpenOutlined, FolderOutlined, FormatPainterOutlined, LoadingOutlined, LogoutOutlined, } from '@ant-design/icons'
+import { BarsOutlined, DingdingOutlined, FolderOpenOutlined, FolderOutlined, LoadingOutlined, LogoutOutlined, } from '@ant-design/icons'
 export const layoutData = [
     {
         id: "1",
@@ -19,12 +19,7 @@ export const layoutData = [
         name: 'Brands',
         path: "brands"
     },
-    // {
-    //     id: "4",
-    //     icon: FormatPainterOutlined,
-    //     name: 'Attribute',
-    //     path: "attribute"
-    // },
+   
     {
         id: "5",
         icon: FolderOpenOutlined,

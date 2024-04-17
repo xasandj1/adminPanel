@@ -23,8 +23,8 @@ export const EditBrands = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const { data } = useGetBrand(id);
-    const { mutate } = useMutateBrandsId(id);
+    const { data } = useGetBrand(id as string);
+    const { mutate } = useMutateBrandsId(id as string);
 
     const [fileList, setFileList] = useState<File[]>([]);
 

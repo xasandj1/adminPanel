@@ -1,12 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { request } from "../../../../config/request";
-import { FormTypes } from "../../../Create";
 
-export const mutateSubEdit = (id: number) => {
+export const mutateSubEdit = (id: number | string) => {
     return useMutation({
         mutationFn: (data: FormData) =>
             request
-                .put<FormTypes>(`/category/${id}/`, data, {
+                .put(`/category/${id}/`, data, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
