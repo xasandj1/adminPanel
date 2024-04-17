@@ -1,33 +1,38 @@
-import React, { useState } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import {
-    AudioOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
+    SearchOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { layoutData } from '../data/layoutdata';
 import { Link, Outlet } from 'react-router-dom';
 import "../layout.scss"
-import { Input } from 'antd';
-import { SearchProps } from 'antd/es/input';
+import { useSearch } from '../service/Mutate/useSearchMutate';
+import useDebounce from './MainDebaunce';
+import "../layout.scss"
+import { nanoid } from 'nanoid';
 
 const { Header, Sider, Content } = Layout;
 
 export const MainLayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const [value, setValue] = useState<any>("")
+    const setInput = useDebounce(value)
+    const { data } = useSearch(setInput)
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
-    const { Search } = Input;
-    const suffix = (
-        <AudioOutlined
-            style={{
-                fontSize: 16,
-                color: '#1677ff',
-            }}
-        />
-    );
-    const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+    
+    const changeValue = (e: BaseSyntheticEvent) => {
+        if (e.target.value?.length > 1) {
+            setValue(e.target.value)
+        }
+        if (e.target.value <= 1) {
+            setValue("")
+        }
+
+    }
     return (
         <Layout className='layout'>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -56,15 +61,33 @@ export const MainLayout: React.FC = () => {
                         }}
                     />
                     <Link to={"/home"} className='logo'>Adminka</Link>
-                    <div className="input">
-                        <Search
-                            placeholder="input search text"
-                            enterButton="Search"
-                            size="large"
-                            suffix={suffix}
-                            onSearch={onSearch}
+                    <div className='search_div'>
+                        <input
+                            className='search'
+                            type="text"
+                            placeholder='Search Product'
+                            onChange={changeValue}
                         />
+                        <SearchOutlined style={{ fontSize: "20px" }} className='icons__search' />
                     </div>
+                    {
+                        value.length > 1 ?
+                            <div className='product_div'>
+                                {data?.results?.map((item: any) =>
+                                (
+                                    <Link to={`edit-category/${item.id}`} key={nanoid()} className=''>
+                                        <div className='product_block'>
+                                            <div>
+                                                <img className='filter__img' src={item.image} alt="" />
+                                            </div>
+                                            <h2 className='filter__title'>{item.title}</h2>
+                                        </div>
+                                    </Link>
+                                )
+                                )}
+                            </div>
+                            : ""
+                    }
                 </Header>
                 <Content
                     style={{

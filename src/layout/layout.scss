@@ -1,20 +1,25 @@
 .menu-icon {
     padding: 1px;
 }
-.icons{
+
+.icons {
     margin-right: 20px !important;
 }
+
 .icons svg {
     width: 25px !important;
     height: 25px !important;
 }
-.layout__menu{
+
+.layout__menu {
     height: 100vh !important;
 }
-.layout__list{
+
+.layout__list {
     margin-top: 12px !important;
 }
-.logo{
+
+.logo {
     font-weight: 700;
     font-size: 20px;
     padding-left: 10px;
@@ -22,9 +27,56 @@
     color: black;
     text-transform: uppercase;
 }
-.input{
-   display: flex;
-   align-items: center;
-   padding-left: 15px;
-   padding-right: 15px;
+
+.input {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search_div {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    max-width: 1020px;
+    top: 0%;
+    right: 0%;
+}
+
+.search {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    color: black;
+    position: relative;
+    outline-color: rgb(5, 5, 169);
+}
+
+.icons__search {
+    position: absolute;
+    top: 35%;
+    right: 2%;
+}
+
+.product_div {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.filter__img {
+    width: 100px;
+    height: 100px;
+}
+.filter__title{
+    color: black;
 }
