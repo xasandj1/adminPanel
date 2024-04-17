@@ -41,7 +41,6 @@ export const CreateBanner: React.FC = () => {
 
     const { mutate } = mutateCreateBanner();
     const onFinish = (values: CategoryData) => {
-        console.log(values);
         const formData = new FormData();
         formData.append("title", values.title);
         formData.append("description", values.description);
@@ -52,7 +51,7 @@ export const CreateBanner: React.FC = () => {
         mutate(formData, {
             onSuccess: () => {
                 message.success("success");
-                navigate("/home")
+                navigate("/home/banner")
             },
             onError: (error) => {
                 console.log(error);
