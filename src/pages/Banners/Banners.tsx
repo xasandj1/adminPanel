@@ -17,7 +17,8 @@ export const Banners: React.FC = () => {
             },
         });
     };
-    const dataSource = products? products?.map((product: any) => ({
+    const dataSource = products? 
+    products?.map((product: any) => ({
             key: product.id.toString(),
             name: product.title,
             id: product.id,
@@ -34,6 +35,7 @@ export const Banners: React.FC = () => {
             ),
         }))
         : [];
+        
 
     const columns: TableProps<{}>["columns"] = [
         {

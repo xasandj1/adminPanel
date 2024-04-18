@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -10,12 +10,21 @@ import { Link, Outlet } from 'react-router-dom';
 import "../layout.scss"
 import { useSearch } from '../service/Mutate/useSearchMutate';
 import useDebounce from './MainDebaunce';
+// import Cookies from 'js-cookie';
 import "../layout.scss"
 import { nanoid } from 'nanoid';
 
 const { Header, Sider, Content } = Layout;
+// const token: string | null = Cookies.get("token")
 
 export const MainLayout: React.FC = () => {
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     if (!token) {
+    //         navigate("/home")
+    //     }
+    // }, [token])
+
     const [collapsed, setCollapsed] = useState(false);
     const [value, setValue] = useState<any>("")
     const setInput = useDebounce(value)
@@ -23,7 +32,7 @@ export const MainLayout: React.FC = () => {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
-    
+
     const changeValue = (e: BaseSyntheticEvent) => {
         if (e.target.value?.length > 1) {
             setValue(e.target.value)

@@ -41,9 +41,7 @@ export const AttributeCreate: React.FC<AttributeCreateProps> = ({ subCategoryId 
     const navigate = useNavigate();
 
     const { mutate } = usePostAtt();
-    const onFinish = (values: { items: Item[] }) => {
-        console.log(values);
-        
+    const onFinish = (values: { items: Item[] }) => {        
         const payload: Payload = {
             attr_list: values.items.map((item: Item) => ({
                 title: item.name,
