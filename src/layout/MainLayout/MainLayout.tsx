@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
